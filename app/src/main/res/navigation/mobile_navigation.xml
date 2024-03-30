@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_stats">
+
+    <fragment
+        android:id="@+id/navigation_stats"
+        android:name="net.namada.nebbstats.screen.stats.StatsFragment"
+        android:label="@string/title_stats"
+        tools:layout="@layout/fragment_stats" />
+
+    <fragment
+        android:id="@+id/navigation_pilot"
+        android:name="net.namada.nebbstats.screen.pilot.PilotFragment"
+        android:label="@string/title_pilot"
+        tools:layout="@layout/fragment_pilot" >
+        <action
+            android:id="@+id/action_navigation_pilot_to_navigation_player"
+            app:destination="@id/navigation_player"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@animator/nav_default_exit_anim" />
+        <argument
+            android:name="player"
+            app:argType="net.namada.nebbstats.models.Player" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_crew"
+        android:name="net.namada.nebbstats.screen.crew.CrewFragment"
+        android:label="@string/title_crew"
+        tools:layout="@layout/fragment_stats" >
+        <action
+            android:id="@+id/action_navigation_crew_to_navigation_player"
+            app:destination="@id/navigation_player"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="player"
+            app:argType="net.namada.nebbstats.models.Player" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_player"
+        android:name="net.namada.nebbstats.screen.player.PlayerFragment"
+        android:label="@string/player"
+        tools:layout="@layout/fragment_player"
+        />
+</navigation>
