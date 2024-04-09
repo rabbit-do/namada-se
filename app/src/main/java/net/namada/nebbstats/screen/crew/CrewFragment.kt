@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,10 +13,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import net.namada.nebbstats.R
 import net.namada.nebbstats.common.EndlessScrollListener
 import net.namada.nebbstats.databinding.FragmentCrewBinding
-import net.namada.nebbstats.screen.pilot.PilotFragmentDirections
-import net.namada.nebbstats.screen.pilot.PilotViewModel
-import net.namada.nebbstats.screen.stats.PlayerAdapter
-import net.namada.nebbstats.screen.stats.PlayerClick
+import net.namada.nebbstats.screen.player.PlayerAdapter
+import net.namada.nebbstats.screen.player.PlayerClick
 import net.namada.nebbstats.screen.stats.StatsViewModel
 
 class CrewFragment : Fragment() {

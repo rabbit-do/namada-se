@@ -17,7 +17,8 @@ data class NetworkSubmission (
     @Json(name="Evidence"           ) var Evidence         : String? = null,
     @Json(name="Eligible_for_ROIDS" ) var EligibleForROIDS : String? = null,
     @Json(name="S_Class_Subclass"   ) var SClassSubclass   : String? = null,
-    @Json(name="Comments"           ) var Comments         : String? = null
+    @Json(name="Comments"           ) var Comments         : String? = null,
+    @Json(name="Type") var Type: String? = null
 
 )
 
@@ -31,8 +32,9 @@ fun NetworkSubmission.toSubmissionModel(): Submission {
         description = this.Description,
         evidence = this.Evidence,
         eligibleForRoids = this.EligibleForROIDS,
-        subClass = this.SClassSubclass,
-        comment = this.Comments
+        subClass = this.SClassSubclass?.ifEmpty { "To be Defined" },
+        comment = this.Comments,
+        type = this.Type
     )
 }
 

@@ -1,8 +1,7 @@
-package net.namada.nebbstats.screen.stats
+package net.namada.nebbstats.screen.player
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView

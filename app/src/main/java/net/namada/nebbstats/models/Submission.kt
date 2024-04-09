@@ -9,7 +9,8 @@ data class Submission(val id: String?,
                       val evidence: String?,
                       val eligibleForRoids: String?,
                       val subClass: String?,
-                      val comment: String?
+                      val comment: String?,
+                        val type: String?
 )
 
 

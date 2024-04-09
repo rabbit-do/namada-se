@@ -10,7 +10,7 @@
 
         <variable
             name="playerCallback"
-            type="net.namada.nebbstats.screen.stats.PlayerClick" />
+            type="net.namada.nebbstats.screen.player.PlayerClick" />
     </data>
 
 

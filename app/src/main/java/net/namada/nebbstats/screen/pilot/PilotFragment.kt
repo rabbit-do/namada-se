@@ -13,8 +13,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import net.namada.nebbstats.R
 import net.namada.nebbstats.common.EndlessScrollListener
 import net.namada.nebbstats.databinding.FragmentPilotBinding
-import net.namada.nebbstats.screen.stats.PlayerAdapter
-import net.namada.nebbstats.screen.stats.PlayerClick
+import net.namada.nebbstats.screen.player.PlayerAdapter
+import net.namada.nebbstats.screen.player.PlayerClick
 import net.namada.nebbstats.screen.stats.StatsViewModel
 
 class PilotFragment : Fragment() {

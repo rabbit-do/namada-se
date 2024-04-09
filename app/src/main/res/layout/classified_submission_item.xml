@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="classifiedSubmission"
+            type="net.namada.nebbstats.models.ClassifiedSubmission" />
+
+        <variable
+            name="classifiedSubmissionCallback"
+            type="net.namada.nebbstats.screen.stats.ClassifiedSubmissionClick" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="5dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:text="@{classifiedSubmission.subCategoryName}"
+                app:layout_constraintEnd_toStartOf="@id/total_count"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/total_count"
+                android:layout_width="@dimen/count_height"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/count_height"
+                android:text="@string/approved"
+                android:gravity="end"
+                app:layout_constraintEnd_toStartOf="@id/approved_count"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+            <TextView
+                android:id="@+id/approved_count"
+                android:layout_width="@dimen/count_height"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                tools:text="1000" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/count_height"
+                android:text="@string/rejected"
+                android:gravity="end"
+                app:layout_constraintEnd_toStartOf="@id/rejected_count"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/approved_count" />
+
+            <TextView
+                android:id="@+id/rejected_count"
+                android:layout_width="@dimen/count_height"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/approved_count" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/count_height"
+                android:text="@string/spam"
+                android:gravity="end"
+                app:layout_constraintEnd_toStartOf="@id/rejected_count"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rejected_count" />
+
+            <TextView
+                android:id="@+id/spam_count"
+                android:layout_width="@dimen/count_height"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rejected_count" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/count_height"
+                android:text="@string/pending"
+                android:gravity="end"
+                app:layout_constraintEnd_toStartOf="@id/rejected_count"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/spam_count" />
+
+            <TextView
+                android:id="@+id/pending_count"
+                android:layout_width="@dimen/count_height"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/spam_count" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
