@@ -23,9 +23,7 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_enter_anim"
             app:popExitAnim="@animator/nav_default_exit_anim" />
-        <argument
-            android:name="player"
-            app:argType="net.namada.nebbstats.models.Player" />
+
     </fragment>
 
     <fragment
@@ -40,15 +38,17 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <argument
-            android:name="player"
-            app:argType="net.namada.nebbstats.models.Player" />
+
     </fragment>
 
     <fragment
         android:id="@+id/navigation_player"
         android:name="net.namada.nebbstats.screen.player.PlayerFragment"
         android:label="@string/player"
-        tools:layout="@layout/fragment_player"
+        tools:layout="@layout/fragment_player" >
+        <argument
+            android:name="player"
+            app:argType="net.namada.nebbstats.models.PlayerStat" />
         />
+    </fragment>
 </navigation>

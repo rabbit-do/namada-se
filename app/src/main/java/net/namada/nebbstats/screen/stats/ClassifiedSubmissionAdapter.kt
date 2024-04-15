@@ -38,10 +38,24 @@ class ClassifiedSubmissionAdapter (val callback: ClassifiedSubmissionClick,
         }
 
         holder.viewDataBinding.totalCount.text = getTotalCountByFilter(item)
+        holder.viewDataBinding.totalPilotCount.text = item.categoryPilotStat.totalInt.toString()
+        holder.viewDataBinding.totalCrewCount.text = item.categoryCrewStat.totalInt.toString()
+        //
         holder.viewDataBinding.approvedCount.text = getApprovedCountByFilter(item)
+        holder.viewDataBinding.approvedPilotCount.text = item.categoryPilotStat.yesCount.toString()
+        holder.viewDataBinding.approvedCrewCount.text = item.categoryCrewStat.yesCount.toString()
+        //
         holder.viewDataBinding.rejectedCount.text = getRejectedCountByFilter(item)
+        holder.viewDataBinding.rejectedPilotCount.text = item.categoryPilotStat.noCount.toString()
+        holder.viewDataBinding.rejectedCrewCount.text = item.categoryCrewStat.noCount.toString()
+        //
         holder.viewDataBinding.spamCount.text = getSpamCountByFilter(item)
+        holder.viewDataBinding.spamPilotCount.text = item.categoryPilotStat.spamCount.toString()
+        holder.viewDataBinding.spamCrewCount.text = item.categoryCrewStat.spamCount.toString()
+        //
         holder.viewDataBinding.pendingCount.text = getPendingCountByFilter(item)
+        holder.viewDataBinding.pendingPilotCount.text = item.categoryPilotStat.pendingCount.toString()
+        holder.viewDataBinding.pendingCrewCount.text = item.categoryCrewStat.pendingCount.toString()
     }
 
     private fun getPendingCountByFilter(item: ClassifiedSubmission) : String{

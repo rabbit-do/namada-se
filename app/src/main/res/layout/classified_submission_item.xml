@@ -34,6 +34,8 @@
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:text="@{classifiedSubmission.subCategoryName}"
+                android:textStyle="bold"
+                tools:text="Uno "
                 app:layout_constraintEnd_toStartOf="@id/total_count"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -43,8 +45,24 @@
                 android:layout_width="@dimen/count_height"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                app:layout_constraintEnd_toStartOf="@id/total_pilot_count"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/total_pilot_count"
+                android:layout_width="@dimen/count_height"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintEnd_toStartOf="@+id/total_crew_count"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/total_crew_count"
+                android:layout_width="@dimen/count_height"
+                android:layout_height="wrap_content"
+                android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
 
             <TextView
                 android:layout_width="0dip"
@@ -60,6 +78,23 @@
                 android:id="@+id/approved_count"
                 android:layout_width="@dimen/count_height"
                 android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@id/total_pilot_count"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                tools:text="1000" />
+
+            <TextView
+                android:id="@+id/approved_pilot_count"
+                android:layout_width="@dimen/count_height"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/approved_crew_count"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                tools:text="1000" />
+            <TextView
+                android:id="@+id/approved_crew_count"
+                android:layout_width="@dimen/count_height"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:gravity="center"
                 app:layout_constraintTop_toBottomOf="@+id/title"
@@ -69,14 +104,31 @@
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/count_height"
-                android:text="@string/rejected"
                 android:gravity="end"
+                android:text="@string/rejected"
                 app:layout_constraintEnd_toStartOf="@id/rejected_count"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/approved_count" />
 
+
             <TextView
                 android:id="@+id/rejected_count"
+                android:layout_width="@dimen/count_height"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintEnd_toStartOf="@id/total_pilot_count"
+                app:layout_constraintTop_toBottomOf="@id/approved_count" />
+
+            <TextView
+                android:id="@+id/rejected_pilot_count"
+                android:layout_width="@dimen/count_height"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintEnd_toStartOf="@id/rejected_crew_count"
+                app:layout_constraintTop_toBottomOf="@id/approved_count" />
+            <TextView
+                android:id="@+id/rejected_crew_count"
                 android:layout_width="@dimen/count_height"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -98,6 +150,22 @@
                 android:layout_width="@dimen/count_height"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                app:layout_constraintEnd_toStartOf="@+id/spam_pilot_count"
+                app:layout_constraintTop_toBottomOf="@id/rejected_count" />
+
+            <TextView
+                android:id="@+id/spam_pilot_count"
+                android:layout_width="@dimen/count_height"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintEnd_toStartOf="@+id/spam_crew_count"
+                app:layout_constraintTop_toBottomOf="@id/rejected_count" />
+
+            <TextView
+                android:id="@+id/spam_crew_count"
+                android:layout_width="@dimen/count_height"
+                android:layout_height="wrap_content"
+                android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rejected_count" />
 
@@ -113,6 +181,22 @@
 
             <TextView
                 android:id="@+id/pending_count"
+                android:layout_width="@dimen/count_height"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintEnd_toStartOf="@+id/pending_pilot_count"
+                app:layout_constraintTop_toBottomOf="@id/spam_count" />
+
+            <TextView
+                android:id="@+id/pending_pilot_count"
+                android:layout_width="@dimen/count_height"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintEnd_toStartOf="@+id/pending_crew_count"
+                app:layout_constraintTop_toBottomOf="@id/spam_count" />
+
+            <TextView
+                android:id="@+id/pending_crew_count"
                 android:layout_width="@dimen/count_height"
                 android:layout_height="wrap_content"
                 android:gravity="center"

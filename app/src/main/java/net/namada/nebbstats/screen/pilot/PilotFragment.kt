@@ -13,6 +13,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import net.namada.nebbstats.R
 import net.namada.nebbstats.common.EndlessScrollListener
 import net.namada.nebbstats.databinding.FragmentPilotBinding
+import net.namada.nebbstats.models.PlayerStat
+import net.namada.nebbstats.screen.crew.CrewFragmentDirections
 import net.namada.nebbstats.screen.player.PlayerAdapter
 import net.namada.nebbstats.screen.player.PlayerClick
 import net.namada.nebbstats.screen.stats.StatsViewModel
@@ -25,9 +27,9 @@ class PilotFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     private val viewModel : StatsViewModel by activityViewModels()
-    private var playerAdapter: PlayerAdapter? = null
+//    private var playerAdapter: PlayerAdapter? = null
     private lateinit var refreshLayout: SwipeRefreshLayout
-
+    private var playerStatAdapter: PlayerStatAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,24 +38,17 @@ class PilotFragment : Fragment() {
     ): View {
         _binding = FragmentPilotBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        playerAdapter = PlayerAdapter(PlayerClick {
+
+        refreshLayout = root.findViewById<SwipeRefreshLayout>(R.id.refresh_layout)
+        playerStatAdapter = PlayerStatAdapter( PlayerStatClick {
             findNavController().navigate(
-                PilotFragmentDirections.actionNavigationPilotToNavigationPlayer()
+                PilotFragmentDirections.actionNavigationPilotToNavigationPlayer(it)
             )
         })
-        refreshLayout = root.findViewById<SwipeRefreshLayout>(R.id.refresh_layout)
-        refreshLayout.setOnRefreshListener {
-            viewModel.getPilotList(0)
-        }
         root.findViewById<RecyclerView>(R.id.recycler_view).apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = playerAdapter
-            addOnScrollListener(object :
-                EndlessScrollListener(layoutManager as LinearLayoutManager) {
-                override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
-                    viewModel.getPilotList(page)
-                }
-            })
+            adapter = playerStatAdapter
+
         }
 
         return root
@@ -62,8 +57,8 @@ class PilotFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         println("Pilot viewModel: "+ viewModel)
-        viewModel.pilots.observe(viewLifecycleOwner){ pilots ->
-            playerAdapter?.players = pilots
+        viewModel.pilotPlayerStat.observe(viewLifecycleOwner){ pilotStat ->
+            playerStatAdapter?.playerStats = pilotStat
 
         }
         viewModel.getPilotList(0)

@@ -15,11 +15,61 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/submission_category"
+            app:layout_constraintEnd_toStartOf="@id/total_count"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/total_count"
+            android:layout_width="@dimen/count_height"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/total"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/pilot"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/pilot"
+            android:layout_width="@dimen/count_height"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="@string/title_pilot"
+            app:layout_constraintEnd_toStartOf="@id/crew"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/crew"
+            android:layout_width="@dimen/count_height"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="@string/title_crew"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            tools:listitem="@layout/classified_submission_item"
             android:layout_width="match_parent"
-            android:layout_marginBottom="10dp"
-            android:layout_height="match_parent"/>
+            android:layout_height="0dip"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintBottom_toTopOf="@id/bottom_view"
+            tools:listitem="@layout/classified_submission_item" />
+
+        <View
+            android:id="@+id/bottom_view"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

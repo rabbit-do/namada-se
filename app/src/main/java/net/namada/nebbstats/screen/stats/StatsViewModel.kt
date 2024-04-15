@@ -14,6 +14,7 @@ import net.namada.nebbstats.api.toListSubmissionModel
 import net.namada.nebbstats.models.CategoryStat
 import net.namada.nebbstats.models.ClassifiedSubmission
 import net.namada.nebbstats.models.Player
+import net.namada.nebbstats.models.PlayerStat
 import net.namada.nebbstats.models.Submission
 
 class StatsViewModel(app: Application) : AndroidViewModel(app) {
@@ -23,6 +24,11 @@ class StatsViewModel(app: Application) : AndroidViewModel(app) {
     private var allPilots: MutableList<Player> = emptyList<Player>().toMutableList() //hold all pilots from API
     private val _pilots = MutableLiveData<List<Player>>()
     val pilots : LiveData<List<Player>> = _pilots
+    private val _pilotPlayerStat = MutableLiveData<MutableList<PlayerStat>>()
+    val pilotPlayerStat : LiveData<MutableList<PlayerStat>> = _pilotPlayerStat
+    private val _crewPlayerStat = MutableLiveData<MutableList<PlayerStat>>()
+    val crewPlayerStat : LiveData<MutableList<PlayerStat>> = _crewPlayerStat
+
     private var allCrews: MutableList<Player> = emptyList<Player>().toMutableList() //hold all pilots from API
     private val _crews = MutableLiveData<List<Player>>()
     val crews : LiveData<List<Player>> = _crews
@@ -54,7 +60,7 @@ class StatsViewModel(app: Application) : AndroidViewModel(app) {
        /**
      * classify submission data into categories
      */
-    private fun classifyData(allSubmission: List<Submission>) {
+    private suspend fun classifyData(allSubmission: List<Submission>) {
         classifiedGeneralSubmissionsList.clear()
         allPilotSubmissions = allSubmission.filter { it.type == "Pilot" }
         allCrewSubmissions = allSubmission.filter { it.type == "Crew" }
@@ -128,6 +134,27 @@ class StatsViewModel(app: Application) : AndroidViewModel(app) {
         }
         println("pilotAddressApprovedCountMap $pilotAddressApprovedCountMap")
         println("crewApprovedCountAddressMap $crewApprovedCountAddressMap")
+        val pilotStatsList: MutableList<PlayerStat> = emptyList<PlayerStat>().toMutableList()
+        pilotApprovedCountAddressMap.forEach { it ->
+            pilotStatsList.add(
+                PlayerStat(
+                sClassCategoryCount = it.key,
+                playerCompletedCount = it.value.size,
+                    players = it.value
+            ))
+        }
+        _pilotPlayerStat.postValue(pilotStatsList)
+        //
+        val crewStatsList: MutableList<PlayerStat> = emptyList<PlayerStat>().toMutableList()
+        crewApprovedCountAddressMap.forEach { it ->
+            crewStatsList.add(
+                PlayerStat(
+                    sClassCategoryCount = it.key,
+                    playerCompletedCount = it.value.size,
+                    players = it.value
+                ))
+        }
+        _crewPlayerStat.postValue(crewStatsList)
     }
 
 

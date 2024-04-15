@@ -44,10 +44,7 @@ fun List<NetworkSubmission>.toListSubmissionModel(): List<Submission>{
     }
 }
 /**
- * curl --location 'https://namada-4f22.restdb.io/rest/submission' \
- * --header 'accept: application/json' \
- * --header 'x-apikey: 6604efd5d34bb0517c8e4f97' \
- * --header '4d22ad7cfa7c7b5a04d4c6550f1ae3ab9072d;'
+
  *
  * {
  *         "_id": "6604e8ce89a2764b0002f7dc",
