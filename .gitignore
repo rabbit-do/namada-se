@@ -33,3 +33,6 @@
 .idea/sonarlint/securityhotspotstore/7/5/75c47cb70014b26d5ba5f72502ba622f208f891f
 .idea/sonarlint/securityhotspotstore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 .idea/sonarlint/securityhotspotstore/e/a/ea15e4615eed937a3aaf720d39fb4ede764ba9e7
+.gradle/file-system.probe
+.gradle/8.0/executionHistory/executionHistory.bin
+.gradle/8.0/fileHashes/resourceHashesCache.bin
