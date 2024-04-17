@@ -20,9 +20,12 @@ Welcome to Namada-SE, an Android application designed to provide statistics on S
 
 ## Screenshots
 
-![Home Screen](/screenshots/home.png)
-![Statistics View](/screenshots/statistics.png)
-![Detail View](/screenshots/detail.png)
+![Home Screen](/screenshot/HomeScreen.png)
+![Pilot statistic](/screenshot/Pilot_statistic.png)
+![Crew statistic](/screenshot/crew_statistic.png)
+![List of players completed S-Class](/screenshot/Player%20list.png)
+![View submissions of a Player](/screenshot/player%20submissions.png)
+![View rank of player on Extended Nebb](/screenshot/extended%20rank.png)
 
 *Note: Replace the above paths with the actual file names of your screenshots.*
 
