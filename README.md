@@ -1,8 +1,10 @@
 ### Download APK to install
 https://github.com/rabbit-do/namada-se/blob/main/app/release/app-release.apk
 
+### Demo video
+https://www.youtube.com/watch?v=c8_Jb-LqFHY
 
-# Namada-SE
+### S Class Submission Statistic
 
 Welcome to Namada-SE, an Android application designed to provide statistics on S-Class Submissions for Pilots and Crews.
 
