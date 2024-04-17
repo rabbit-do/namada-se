@@ -53,6 +53,7 @@ class StatsViewModel(app: Application) : AndroidViewModel(app) {
 
     fun getAllSubmission() {
         coroutineScope.launch {
+            allSubmission.clear()
             val allSubmission1 = NetworkProvider.appService
                 .getAllSubmission(NetworkProvider.YEK, NetworkProvider.MAX, 0)
                 .toListSubmissionModel().toMutableList()
@@ -70,6 +71,9 @@ class StatsViewModel(app: Application) : AndroidViewModel(app) {
      */
     private suspend fun classifyData(allSubmission: List<Submission>) {
         classifiedGeneralSubmissionsList.clear()
+           subCategoryNameSet.clear()
+           classifiedPilotSubmissionsMap.clear()
+           classifiedCrewSubmissionsMap.clear()
         allPilotSubmissions = allSubmission.filter { it.type == "Pilot" }
         allCrewSubmissions = allSubmission.filter { it.type == "Crew" }
         println("allSubmission: ${allSubmission.size} , pilot sub: ${allPilotSubmissions.size},  crew sub: ${allCrewSubmissions.size}")
@@ -120,7 +124,8 @@ class StatsViewModel(app: Application) : AndroidViewModel(app) {
                     (crewAddressApprovedCountMap[address] ?: 0) + 1
             }
         }
-
+        pilotApprovedCountAddressMap.clear()
+        crewApprovedCountAddressMap.clear()
         pilotAddressApprovedCountMap.forEach { it ->
             if(pilotApprovedCountAddressMap[it.value] == null){
                 val list: MutableList<String> = emptyList<String>().toMutableList()
@@ -139,8 +144,7 @@ class StatsViewModel(app: Application) : AndroidViewModel(app) {
                 crewApprovedCountAddressMap[it.value]!!.add(it.key)
             }
         }
-        println("pilotAddressApprovedCountMap $pilotAddressApprovedCountMap")
-        println("crewApprovedCountAddressMap $crewApprovedCountAddressMap")
+
         val pilotStatsList: MutableList<PlayerStat> = emptyList<PlayerStat>().toMutableList()
         pilotApprovedCountAddressMap.forEach { it ->
             pilotStatsList.add(
