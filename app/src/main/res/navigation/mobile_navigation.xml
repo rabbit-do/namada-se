@@ -44,11 +44,36 @@
     <fragment
         android:id="@+id/navigation_player"
         android:name="net.namada.nebbstats.screen.player.PlayerFragment"
-        android:label="@string/player"
+        android:label="@string/player_list"
         tools:layout="@layout/fragment_player" >
         <argument
             android:name="player"
             app:argType="net.namada.nebbstats.models.PlayerStat" />
+        <action
+            android:id="@+id/action_navigation_player_to_submissionOfPlayerFragment"
+            app:destination="@id/submissionOfPlayerFragment" />
         />
     </fragment>
+    <fragment
+        android:id="@+id/submissionOfPlayerFragment"
+        android:name="net.namada.nebbstats.screen.submission.SubmissionOfPlayerFragment"
+        android:label="@string/s_class_submission" >
+        <argument
+            android:name="simplePlayer"
+            app:argType="net.namada.nebbstats.models.SimplePlayer" />
+        <action
+            android:id="@+id/action_submissionOfPlayerFragment_to_extendedFragment"
+            app:destination="@id/extendedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/extendedFragment"
+        android:name="net.namada.nebbstats.screen.extended.ExtendedFragment"
+        android:label="@string/rank_on_extended"
+        tools:layout="@layout/fragment_extended" >
+        <argument
+            android:name="address"
+            app:argType="string" />
+    </fragment>
+
+
 </navigation>

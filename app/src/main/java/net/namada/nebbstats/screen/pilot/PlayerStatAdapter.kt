@@ -39,7 +39,7 @@ class PlayerStatAdapter(val callback: PlayerStatClick): RecyclerView.Adapter<Pla
                 "Number of players completed S-class in ${item.sClassCategoryCount} categories"
         }
         holder.viewDataBinding.count.text = item.playerCompletedCount.toString()
-        holder.viewDataBinding.viewButton.setOnClickListener { callback.actionClick(item) }
+        holder.viewDataBinding.root.setOnClickListener { callback.actionClick(item) }
     }
 
 

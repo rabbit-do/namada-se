@@ -40,7 +40,6 @@ class CrewFragment : Fragment() {
         _binding = FragmentCrewBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        refreshLayout = root.findViewById<SwipeRefreshLayout>(R.id.refresh_layout)
 
         playerStatAdapter = PlayerStatAdapter( PlayerStatClick { it ->
             findNavController().navigate(

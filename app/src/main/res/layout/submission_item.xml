@@ -1,0 +1,75 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="submission"
+            type="net.namada.nebbstats.models.Submission" />
+
+
+    </data>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="5dp"
+            >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/category"
+                android:text="@{submission.category}"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                tools:text="Building tool"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/sub_class"
+                android:text="@{submission.subClass}"
+                app:layout_constraintTop_toBottomOf="@id/category"
+                android:layout_width="match_parent"
+                tools:text="Building tool"
+                android:paddingStart="8dp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/eligible"
+                app:layout_constraintTop_toBottomOf="@id/sub_class"
+                tools:text="Building tool"
+                android:paddingStart="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/evidence"
+                app:layout_constraintTop_toBottomOf="@id/eligible"
+                android:text="@{submission.evidence}"
+                android:layout_width="match_parent"
+                tools:text="Building tool"
+                android:paddingStart="8dp"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/comment"
+                app:layout_constraintTop_toBottomOf="@id/evidence"
+                android:layout_width="match_parent"
+                tools:text="Building tool"
+                android:paddingStart="8dp"
+                android:layout_height="wrap_content"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+</layout>

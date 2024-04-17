@@ -11,4 +11,8 @@
     <string name="pending">Pending</string>
     <string name="total">Total\n</string>
     <string name="submission_category">S-class submission category</string>
+    <string name="player_list">Player list</string>
+    <string name="s_class_submission">S Class Submissions</string>
+    <string name="view_on_extended_nebb">View on Extended Nebb by Kintsugi</string>
+    <string name="rank_on_extended">Rank on Extended Nebb</string>
 </resources>

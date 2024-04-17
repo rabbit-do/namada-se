@@ -6,34 +6,61 @@
 
         <variable
             name="player"
-            type="net.namada.nebbstats.models.Player" />
+            type="net.namada.nebbstats.models.SimplePlayer" />
 
         <variable
             name="playerCallback"
             type="net.namada.nebbstats.screen.player.PlayerClick" />
     </data>
 
-
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="5dp"
+            >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:onClick="@{() -> playerCallback.onClick(player)}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/moniker"
-                android:text="@{player.moniker}"
+                android:id="@+id/address"
+                android:text="@{player.address}"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_width="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="0dip"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/type"
                 android:layout_height="wrap_content"/>
 
             <TextView
-                android:id="@+id/rank"
-                android:text="@{player.id}"
-                app:layout_constraintTop_toBottomOf="@+id/moniker"
+                android:id="@+id/type"
+                android:text="@{player.type}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/view_button"
+                android:gravity="end"
+                android:layout_width="@dimen/count_height"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/view_button"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_width="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:padding="8dp"
+                android:onClick="@{() -> playerCallback.onClick(player)}"
+                android:src="@drawable/baseline_visibility_24"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
 
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 </layout>

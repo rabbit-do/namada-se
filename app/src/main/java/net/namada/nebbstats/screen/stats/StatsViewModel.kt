@@ -15,12 +15,13 @@ import net.namada.nebbstats.models.CategoryStat
 import net.namada.nebbstats.models.ClassifiedSubmission
 import net.namada.nebbstats.models.Player
 import net.namada.nebbstats.models.PlayerStat
+import net.namada.nebbstats.models.SimplePlayer
 import net.namada.nebbstats.models.Submission
 
 class StatsViewModel(app: Application) : AndroidViewModel(app) {
     private val modelJob = Job()
     private val coroutineScope = CoroutineScope(Dispatchers.IO + modelJob)
-    private lateinit var allSubmission: List<Submission>
+    private var allSubmission: MutableList<Submission> = emptyList<Submission>().toMutableList()
     private var allPilots: MutableList<Player> = emptyList<Player>().toMutableList() //hold all pilots from API
     private val _pilots = MutableLiveData<List<Player>>()
     val pilots : LiveData<List<Player>> = _pilots
@@ -42,6 +43,9 @@ class StatsViewModel(app: Application) : AndroidViewModel(app) {
     private val _cgsl = MutableLiveData<List<ClassifiedSubmission>>()
     val cgsl: LiveData<List<ClassifiedSubmission>> = _cgsl
 
+    val pilotApprovedCountAddressMap: HashMap<Int, MutableList<String>> = HashMap()
+    val crewApprovedCountAddressMap: HashMap<Int, MutableList<String>> = HashMap()
+
     override fun onCleared() {
         super.onCleared()
         modelJob.cancel()
@@ -49,11 +53,15 @@ class StatsViewModel(app: Application) : AndroidViewModel(app) {
 
     fun getAllSubmission() {
         coroutineScope.launch {
-            allSubmission = NetworkProvider.appService
-                .getAllSubmission(NetworkProvider.YEK)
+            val allSubmission1 = NetworkProvider.appService
+                .getAllSubmission(NetworkProvider.YEK, NetworkProvider.MAX, 0)
+                .toListSubmissionModel().toMutableList()
+            val nextSubmissions1 = NetworkProvider.appService2
+                .getAllSubmission(NetworkProvider.YEK2, NetworkProvider.MAX,  0)
                 .toListSubmissionModel()
+            allSubmission.addAll(allSubmission1)
+            allSubmission.addAll(nextSubmissions1)
             classifyData(allSubmission)
-            println("allSubmission $allSubmission")
         }
     }
 
@@ -112,8 +120,7 @@ class StatsViewModel(app: Application) : AndroidViewModel(app) {
                     (crewAddressApprovedCountMap[address] ?: 0) + 1
             }
         }
-        val pilotApprovedCountAddressMap: HashMap<Int, MutableList<String>> = HashMap()
-        val crewApprovedCountAddressMap: HashMap<Int, MutableList<String>> = HashMap()
+
         pilotAddressApprovedCountMap.forEach { it ->
             if(pilotApprovedCountAddressMap[it.value] == null){
                 val list: MutableList<String> = emptyList<String>().toMutableList()
@@ -140,7 +147,7 @@ class StatsViewModel(app: Application) : AndroidViewModel(app) {
                 PlayerStat(
                 sClassCategoryCount = it.key,
                 playerCompletedCount = it.value.size,
-                    players = it.value
+                    players = it.value, type = "Pilot"
             ))
         }
         _pilotPlayerStat.postValue(pilotStatsList)
@@ -151,7 +158,8 @@ class StatsViewModel(app: Application) : AndroidViewModel(app) {
                 PlayerStat(
                     sClassCategoryCount = it.key,
                     playerCompletedCount = it.value.size,
-                    players = it.value
+                    players = it.value,
+                    type = "Crew"
                 ))
         }
         _crewPlayerStat.postValue(crewStatsList)
@@ -172,13 +180,7 @@ class StatsViewModel(app: Application) : AndroidViewModel(app) {
     fun getPilotList(page: Int) {
         coroutineScope.launch {
             try {
-                val pilotList =
-                    NetworkProvider.nebbService.getPilotList(page).players.toListPlayerModel()
-                if (page == 0){
-                    allPilots.clear() //clear all previous if page = 0
-                }
-                allPilots.addAll(pilotList)
-                _pilots.postValue(allPilots)
+
             }catch (e: Exception){
                 e.printStackTrace()
             }
@@ -189,12 +191,32 @@ class StatsViewModel(app: Application) : AndroidViewModel(app) {
     fun getCrewList(page: Int) {
         coroutineScope.launch {
             try {
-                val crewList =
-                    NetworkProvider.nebbService.getCrewList(page).players.toListPlayerModel()
+
             }catch (e: Exception){
                 e.printStackTrace()
             }
         }
     }
 
+    fun getPlayerList(playerStat: PlayerStat): List<SimplePlayer> {
+        val addressList =  if (playerStat.type == "Pilot"){
+            pilotApprovedCountAddressMap[playerStat.sClassCategoryCount]
+        }else {
+            crewApprovedCountAddressMap[playerStat.sClassCategoryCount]
+        }
+        return addressList.toSimplePlayerList(playerStat.type)
+    }
+
+    fun getSubmissionOfPlayer(simplePlayer: SimplePlayer): List<Submission> {
+        return if(simplePlayer.type == "Pilot"){
+            allPilotSubmissions.filter { it.fromAddress == simplePlayer.address }
+        }else {
+            allCrewSubmissions.filter { it.fromAddress == simplePlayer.address }
+        }
+    }
+
+}
+
+private fun List<String>?.toSimplePlayerList(type: String ):  List<SimplePlayer> {
+    return this?.map { SimplePlayer(it, type) } ?: emptyList()
 }

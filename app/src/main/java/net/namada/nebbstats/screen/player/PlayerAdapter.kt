@@ -8,9 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import net.namada.nebbstats.R
 import net.namada.nebbstats.databinding.PlayerItemBinding
 import net.namada.nebbstats.models.Player
+import net.namada.nebbstats.models.SimplePlayer
 
 class PlayerAdapter(val callback: PlayerClick): RecyclerView.Adapter<PlayerViewHolder>() {
-    var players: List<Player> = emptyList()
+    var players: List<SimplePlayer> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -28,7 +29,10 @@ class PlayerAdapter(val callback: PlayerClick): RecyclerView.Adapter<PlayerViewH
     override fun getItemCount(): Int = players.size
 
     override fun onBindViewHolder(holder: PlayerViewHolder, position: Int) {
-
+        holder.viewDataBinding.also {
+            it.player = players[position]
+            it.playerCallback = callback
+        }
     }
 }
 
@@ -45,11 +49,11 @@ class PlayerViewHolder(val viewDataBinding: PlayerItemBinding) :
     }
 }
 
-class PlayerClick(val player: (Player) -> Unit) {
+class PlayerClick(val player: (SimplePlayer) -> Unit) {
     /**
      * Called when a Player is clicked
      *
      * @param player the Player that was clicked
      */
-    fun onClick(player: Player) = player(player)
+    fun onClick(player: SimplePlayer) = player(player)
 }

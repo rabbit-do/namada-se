@@ -39,7 +39,6 @@ class PilotFragment : Fragment() {
         _binding = FragmentPilotBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        refreshLayout = root.findViewById<SwipeRefreshLayout>(R.id.refresh_layout)
         playerStatAdapter = PlayerStatAdapter( PlayerStatClick {
             findNavController().navigate(
                 PilotFragmentDirections.actionNavigationPilotToNavigationPlayer(it)
