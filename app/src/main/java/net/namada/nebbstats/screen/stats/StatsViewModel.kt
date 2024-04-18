@@ -78,6 +78,7 @@ class StatsViewModel(app: Application) : AndroidViewModel(app) {
         allCrewSubmissions = allSubmission.filter { it.type == "Crew" }
         println("allSubmission: ${allSubmission.size} , pilot sub: ${allPilotSubmissions.size},  crew sub: ${allCrewSubmissions.size}")
         allSubmission.forEach{
+            if(it.subClass != "To be Defined" && it.subClass != "Other")
             subCategoryNameSet.add(it.subClass ?: "")
         }
         println("subCategoryNameSet $subCategoryNameSet")
