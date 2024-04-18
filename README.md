@@ -2,7 +2,7 @@
 https://github.com/rabbit-do/namada-se/blob/main/app/release/app-release.apk
 
 ### Demo video
-https://www.youtube.com/watch?v=c8_Jb-LqFHY
+https://youtu.be/o2AV8XcrPSc
 
 ### S Class Submission Statistic
 
